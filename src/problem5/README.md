@@ -18,6 +18,12 @@ To see the users just go to the link using method GET:
 http://localhost:3000/users
 ```
 
+To see one user just go to the link using method GET:
+
+```bash
+http://localhost:3000/users?name=test
+http://localhost:3000/users?email=test
+```
 To create, use the method POST and on the body, select json and type:
 
 ```bash
