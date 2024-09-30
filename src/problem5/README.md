@@ -1,6 +1,6 @@
-# Project Title
+# Backend Server with Express
 
-A brief description of what this project does and who it's for
+Is a simple server that does CRUD operations to a user with name and email.
 
 ## Usage/Examples
 
