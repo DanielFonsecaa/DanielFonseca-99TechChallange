@@ -1,0 +1,20 @@
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: daniruxx
+      MONGO_INITDB_ROOT_PASSWORD: JlyQOQCzVUVgqCIZ
+      MONGO_INITDB_DATABASE: 99tech
+    ports:
+      - "27017:27017"
+
+  backend:
+    build:
+      context: ./backend # Adjust this to point to your backend folder
+      dockerfile: dockerfile # Optional, defaults to 'Dockerfile'
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
