@@ -1,0 +1,91 @@
+/*
+//THIS IS TYPESCRIPT
+interface WalletBalance {
+  currency: string;
+  amount: number;
+}
+interface FormattedWalletBalance {
+  currency: string;
+  amount: number;
+  formatted: string;
+}
+
+interface Props extends BoxProps {}
+*/
+
+/*const WalletPage: React.FC<Props> = (props: Props)  => { */
+
+import useWalletBalances from "../problem3/hooks/useWalletBalances";
+import usePrices from "../problem3/hook/usePrices";
+import useMemo from "../problem3/hook/useMemo";
+import WalletRow from "./WalletRow.js";
+import classes from "./styles.css";
+
+const WalletPage = (props) => {
+  const { children, ...rest } = props;
+  const balances = useWalletBalances(); //function not defined, have to import
+  const prices = usePrices(); //same as above, funciton not defined, have to import
+
+  //remove typescript properties
+  const getPriority = (blockchain) => {
+    switch (blockchain) {
+      case "Osmosis":
+        return 100;
+      case "Ethereum":
+        return 50;
+      case "Arbitrum":
+        return 30;
+      case "Zilliqa":
+        return 20;
+      case "Neo":
+        return 20;
+      default:
+        return -99;
+    }
+  };
+
+  //also here have to remove typescipt properties and function was not imported
+  const sortedBalances = useMemo(() => {
+    //this checks if the balance.amount is 0, dont know if it is correct
+    return balances
+      .filter((balance) => {
+        const balancePriority = getPriority(balance.blockchain);
+        return balancePriority > -99 && balance.amount <= 0; // simplified if logic
+      }) //I guess it will be like this here.
+      .sort((lhs, rhs) => {
+        const leftPriority = getPriority(lhs.blockchain);
+        const rightPriority = getPriority(rhs.blockchain);
+        return leftPriority > rightPriority ? -1 : 1; // simplified if logic
+      });
+  }, [balances, prices]);
+
+  //this is never used
+  const formattedBalances = sortedBalances.map((balance) => {
+    return {
+      ...balance,
+      formatted: balance.amount.toFixed(), //here was to have a number to be fixed
+    };
+  });
+
+  // Typescript notatios has to remove
+  const rows = sortedBalances.map((balance, index) => {
+    const usdValue = prices[balance.currency] * balance.amount;
+    return (
+      <WalletRow //was not imported or declared
+        className={classes.row} //was not imported or declare
+        key={index}
+        amount={balance.amount}
+        usdValue={usdValue}
+        formattedAmount={balance.formatted}
+      />
+    );
+  });
+
+  return <div {...rest}>{rows}</div>;
+};
+
+//All I did was to remove type definitions and interfaces
+//since I could not find the funcitons, or anything,
+//I just pretend that I have somethign to import
+//and comment the code and remove typos
+//dont know if it is correct what I did, I just follow my filling
