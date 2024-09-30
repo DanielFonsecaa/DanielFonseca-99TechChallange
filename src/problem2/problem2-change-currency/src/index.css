@@ -10,28 +10,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 .form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  background-color: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 50px;
 }
 
+.form-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
 /*amount div*/
 .amount-div {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: start;
-  margin: 20px;
-  margin-top: 15px;
-  margin-right: 40px;
-  padding: 0;
 }
 
 .amount-title {
@@ -42,25 +50,24 @@ code {
   border-radius: 5px;
   border: none;
   outline: none;
+  width: 150px;
 }
 /*select currency from*/
-.from--outer-div {
+.from-outer-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 }
 .from-inner-div {
   margin-top: 3px;
   display: flex;
-  margin-right: 20px;
   flex-direction: row-reverse;
 }
 .from-title {
   display: flex;
 }
 .selectFrom {
-  margin: 0px;
   padding: 8px;
   border-radius: 5px;
   border: none;
@@ -69,7 +76,11 @@ code {
 
 .optionFrom {
   padding: 8px;
-  margin-bottom: 0px;
+}
+.option-from-inside {
+  border-radius: 5px;
+  outline: none;
+  border: none;
 }
 
 .imgFrom {
@@ -94,7 +105,6 @@ code {
   display: flex;
 }
 .selectTo {
-  margin: 0px;
   padding: 8px;
   border-radius: 5px;
   border: none;
@@ -113,51 +123,71 @@ code {
 }
 .change-place {
   display: flex;
-  width: 40px;
-  height: 40px;
-  margin-top: 30px;
-  margin-right: 40px;
-  justify-content: center;
-  align-items: center;
-  background: White;
-  border-radius: 100%;
+  padding-bottom: 10px;
+  align-items: end;
+  background: whitesmoke;
   border: none;
-  color: cadetblue;
+  color: rgb(0, 140, 255);
 }
+
 .buttonMakeConversion {
   display: flex;
-  flex-direction: column;
-}
-
-.form-columns {
-  display: flex;
-  justify-content: space-between; /* Space between the two columns */
-  align-items: flex-start; /* Align items at the top */
-}
-
-.first-column {
-  flex: 3; /* The first column takes up more space */
-  display: flex;
-  flex-direction: column; /* Stack the elements vertically */
-  gap: 20px; /* Add space between the elements */
-}
-
-.second-column {
-  flex: 1; /* The second column (Swap button) takes up less space */
-  display: flex;
-  justify-content: center; /* Center the Swap button horizontally */
-  align-items: center; /* Center the Swap button vertically */
-}
-
-.amount-div,
-.from-outer-div,
-.to-outer-div {
-  display: flex;
-  flex-direction: column;
-}
-
-button.buttonMakeConversion {
   padding: 10px 20px;
+  margin: 10px;
   font-size: 16px;
   cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bolder;
+  background-color: rgb(0, 183, 255);
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: rgb(0, 183, 255);
+}
+
+.message-buttonFetch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+.buttonMakeConversion:hover {
+  background-color: rgb(142, 216, 245);
+}
+.buttonMakeConversion:disabled {
+  background-color: gray;
+}
+.buttonMakeConversion:active {
+  background-color: rgb(3, 110, 153);
+}
+
+@media (max-width: 600px) {
+  .form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .message-buttonFetch {
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+  }
+  .change-place {
+    margin-top: 20px;
+    margin-right: 0;
+  }
 }
