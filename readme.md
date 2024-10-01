@@ -1,10 +1,7 @@
 # 99Tech Code Challenge #1 #
 
-Note that if you fork this repository, your responses may be publicly linked to this repo.  
-Please submit your application along with the solutions attached or linked.   
+I am submitting my work for the 99Tech Code Challenge #1. 
+I did my best to address all the requirements outlined in the challenge.
+I attempted all the problems, as I completed a full-stack bootcamp and prefer a full-stack position.
 
-It is important that you minimally attempt the problems, even if you do not arrive at a working solution.
-
-## Submission ##
-You can either provide a link to an online repository, attach the solution in your application, or whichever method you prefer.
-We're cool as long as we can view your solution without any pain.
+I hope you find my submission satisfactory, and I look forward to the possibility of working together.
