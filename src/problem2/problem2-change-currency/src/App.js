@@ -31,7 +31,6 @@ const currencyImg = {
   OKB: "/tokens/OKB.svg",
   OKT: "/tokens/OKT.svg",
   SWTH: "/tokens/SWTH.svg",
-  USDC: "/tokens/USDC.svg",
   WBTC: "/tokens/WBTC.svg",
   wstETH: "/tokens/wstETH.svg",
   YieldUS: "/tokens/YieldUS.svg",
@@ -56,6 +55,8 @@ function App() {
   //the message after conversion
   const [message, setMessage] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   // fetch the currency list from the API link 99Tech provide
   const handleFetch = async () => {
     try {
@@ -66,6 +67,7 @@ function App() {
       setCurrenciesData(data);
       // will take the currency from each object
       const currenciesNames = data.map((item) => item.currency);
+      console.log(currenciesNames);
       // unique currencies
       const uniqueCurrencies = [...new Set(currenciesNames)];
       setCurrencies(uniqueCurrencies);
@@ -76,14 +78,20 @@ function App() {
   //funciton where will be invoked when submit, and will have the formula to convert
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (amount <= 0) {
+      setMessage("Please enter an amount greater than 0.");
+      return;
+    }
+    setLoading(true);
     setTimeout(() => {
       //formula to convert is
       // amount to receive = (selected amounted * price of the selected currency) / price of the currency you will receive
       // so amountB = (amountA * priceA) / priceB
 
       const result = (amount * priceFrom) / priceTo;
-      setMessage(`${amount} ${token} = ${result.toFixed(2)} ${retriveToken}`);
-    }, 1000);
+      setMessage(`${amount} ${token} = ${result} ${retriveToken}`);
+      setLoading(false);
+    }, 2000);
   };
 
   const handleSwitchCurrency = (event) => {
@@ -160,8 +168,6 @@ function App() {
                 </select>
                 <img src={currencyImg[token]} alt={token} className="imgFrom" />
               </div>
-
-              {/*<p className="priceFrom">Price: {priceFrom}</p>*/}
             </div>
             <button className="change-place" onClick={handleSwitchCurrency}>
               <FontAwesomeIcon
@@ -199,7 +205,11 @@ function App() {
           </div>
 
           <div className="message-buttonFetch">
-            <p className="message">{message}</p>
+            {loading ? (
+              <p>Making the calculations... </p>
+            ) : (
+              <p className="message">{message}</p>
+            )}
             <button
               onClick={handleFetch}
               disabled={!retriveToken || !token || !amount}
